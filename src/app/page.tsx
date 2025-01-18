@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { sanityFetch } from "@/sanity/live";
+// import { sanityFetch } from "@/sanity/live";
 import * as queries from "../helpers/queries";
-import { PortableText } from "next-sanity";
+import { PortableText } from '@portabletext/react'
 import { urlFor } from "@/helpers/urlBuilder";
 
 import Container from 'react-bootstrap/Container';
@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Card from 'react-bootstrap/Card';
+import { client } from "@/sanity/client";
 import CardBody from 'react-bootstrap/CardBody'
 import CardTitle from 'react-bootstrap/CardTitle'
 import CardSubtitle from 'react-bootstrap/CardSubtitle'
@@ -21,12 +22,12 @@ import { UrlObject } from "url";
 
 export default async function Home() {
 
-  const { data: about } = await sanityFetch({ query: queries.aboutQuery });
-  const { data: socials } = await sanityFetch({ query: queries.socialsQuery });
-  const { data: meeting } = await sanityFetch({ query: queries.meetingQuery });
-  const { data: queerspace } = await sanityFetch({ query: queries.queerspaceQuery });
-  const { data: resources } = await sanityFetch({ query: queries.resourceQuery });
-  const { data: update } = await sanityFetch({ query: queries.first });
+  const about = await client.fetch(queries.aboutQuery);
+  const socials = await client.fetch(queries.socialsQuery);
+  const meeting = await client.fetch(queries.meetingQuery);
+  const queerspace = await client.fetch(queries.queerspaceQuery);
+  const resources = await client.fetch(queries.resourceQuery);
+  const update = await client.fetch(queries.first);
 
   console.log(about);
 
@@ -59,9 +60,9 @@ export default async function Home() {
                 ))}
             </Stack>
           </Container>
-          {/* <aside id='graphic'>
-            <Image src="/images/logographic.png" alt="logo" width={238} height={238}/>
-          </aside> */}
+          <aside id='graphic'>
+            {/* <Image src="/images/logographic.png" alt="logo" width={238} height={238}/> */}
+          </aside>
         </section>
         <Container>
           <Row>
