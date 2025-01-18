@@ -14,10 +14,9 @@ import Card from 'react-bootstrap/Card';
 import CardBody from 'react-bootstrap/CardBody'
 import CardTitle from 'react-bootstrap/CardTitle'
 import CardSubtitle from 'react-bootstrap/CardSubtitle'
-import CardText from 'react-bootstrap/CardText'
 import { CardImg } from "react-bootstrap";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
+import { Key} from "react";
 import { UrlObject } from "url";
 
 export default async function Home() {
@@ -119,7 +118,7 @@ export default async function Home() {
           <h2 className='text-xl'>Resources</h2>
           <Row>
 
-          {resources.map((resource: { _id: Key | null | undefined; link: string | UrlObject; image: SanityImageSource; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) =>(
+          {resources.map((resource: { _id: Key | null | undefined; link: string | UrlObject; image: SanityImageSource; title: string; }) =>(
             <Col key={resource._id}>
               <Link href={resource.link} className="ms-auto">
               <Card>
