@@ -16,6 +16,9 @@ import CardTitle from 'react-bootstrap/CardTitle'
 import CardSubtitle from 'react-bootstrap/CardSubtitle'
 import CardText from 'react-bootstrap/CardText'
 import { CardImg } from "react-bootstrap";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
+import { UrlObject } from "url";
 
 export default async function Home() {
 
@@ -48,7 +51,7 @@ export default async function Home() {
           </article>
           <Container className=''>
             <Stack direction="horizontal" gap={3} className="ms-auto">
-                {socials.map((social) => (
+                {socials.map((social: { _id: Key | null | undefined; link: string | UrlObject; image: SanityImageSource; name: string; }) => (
                   <div key={social._id}>
                     <Link href={social.link}>
                       <Image src={urlFor(social.image).width(40).url()} alt={social.name} width={40} height={40}/>
@@ -78,9 +81,7 @@ export default async function Home() {
                     <CardBody>
                       <CardTitle>{update.title}</CardTitle>
                       <CardSubtitle>{update._createdAt}</CardSubtitle>
-                      <CardText>
                         <PortableText value={update.details} />
-                      </CardText>
                     </CardBody>
                   </Card>
                 </article>
@@ -118,7 +119,7 @@ export default async function Home() {
           <h2 className='text-xl'>Resources</h2>
           <Row>
 
-          {resources.map((resource) =>(
+          {resources.map((resource: { _id: Key | null | undefined; link: string | UrlObject; image: SanityImageSource; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) =>(
             <Col key={resource._id}>
               <Link href={resource.link} className="ms-auto">
               <Card>
